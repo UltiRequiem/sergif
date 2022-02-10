@@ -1,0 +1,12 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.img_container {
+  background-color: black;
+  min-height: 250px;
+  padding: 1%;
+  max-width: 380px;
+}
