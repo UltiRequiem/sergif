@@ -1,23 +1,37 @@
-import RecordRTC from "recordrtc";
-
 import { addToElement, createElement } from "./utils";
-import { RecordButtons, Title, DownloadButton } from "./components";
+import { RecordButtons, Title, RecordingFrame } from "./components";
 
 import "./style.css";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-const AppTitle = Title("Sergif")
+const appTitle = Title("Sergif");
 
-const startRecordingButton = RecordButtons("Start Recording");
-const stopRecordingButton = RecordButtons("Stop recording", true);
+const startRecordingButton = RecordButtons("Start Recording", {
+  functions: {
+    click: () => {
+      console.log("Start recording");
+    },
+  },
+});
+
+const stopRecordingButton = RecordButtons("Stop recording", {
+  functions: {
+    click: () => {
+      console.log("Stop recording");
+    },
+  },
+});
+
+const GIFBoxContainer = createElement("div", { classes: "gif_box_container" });
+
+const GIFBox = RecordingFrame();
 
 
 
-const buttons = addToElement(
-  createElement("div", { classes: "flex flex-col items-center" }),
+addToElement(app, [
+  appTitle,
   startRecordingButton,
   stopRecordingButton,
-);
-
-addToElement(app, AppTitle, buttons, DownloadButton());
+  addToElement(GIFBoxContainer, [GIFBox]),
+]);

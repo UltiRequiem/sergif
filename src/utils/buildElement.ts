@@ -1,18 +1,14 @@
-export interface EleOptions {
-  classes?: string[] | string;
-  attributes?: { [key: string]: string | boolean };
-}
+import type { EleOptions } from "./types";
 
-// This function is cool, make a package later!
 export function createElement<Tag extends keyof HTMLElementTagNameMap>(
   tag: Tag,
   text?: string | EleOptions,
-  options?: EleOptions,
+  options?: EleOptions
 ): HTMLElementTagNameMap[Tag];
 export function createElement(
   tag: string,
   text: string | EleOptions = {},
-  options: EleOptions = {},
+  options: EleOptions = {}
 ): HTMLElement {
   const element = document.createElement(tag);
 
@@ -35,13 +31,15 @@ export function createElement(
     }
   }
 
-  return element;
-}
+  if (options.functions) {
+    for (const key in options.functions) {
+      console.log(`${key} ${options.functions[key]}`);
 
-export function addToElement<T extends HTMLElement>(app: T, ...elements: HTMLElement[]) {
-  for (const element of elements) {
-    app.appendChild(element);
+      options.functions[key]();
+
+      element.addEventListener(key, options.functions[key]);
+    }
   }
 
-  return app;
+  return element;
 }
