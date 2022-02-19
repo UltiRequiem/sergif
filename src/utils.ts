@@ -3,25 +3,24 @@ export interface EleOptions {
   attributes?: { [key: string]: string | boolean };
 }
 
-interface hehe {
-  [key: string]: string | boolean;
-}
-
-const pedro: hehe = {
-  name: "Pedro",
-  age: "23",
-  isAlive: true,
-};
-
-export function createElement<Element extends HTMLElement>(
+// This function is cool, make a package later!
+export function createElement<Tag extends keyof HTMLElementTagNameMap>(
+  tag: Tag,
+  text?: string | EleOptions,
+  options?: EleOptions,
+): HTMLElementTagNameMap[Tag];
+export function createElement(
   tag: string,
-  text: string,
-  options: EleOptions = {}
-): Element {
-  const element: Element = document.createElement(tag);
+  text: string | EleOptions = {},
+  options: EleOptions = {},
+): HTMLElement {
+  const element = document.createElement(tag);
 
-  element.textContent = text;
-
+  if (typeof text === "string") {
+    element.textContent = text;
+  } else {
+    options = text;
+  }
   if (options.classes) {
     if (typeof options.classes === "string") {
       options.classes = options.classes.split(" ");
@@ -39,9 +38,10 @@ export function createElement<Element extends HTMLElement>(
   return element;
 }
 
-export function addToApp(app: HTMLElement, ...elements: HTMLElement[]) {
+export function addToElement<T extends HTMLElement>(app: T, ...elements: HTMLElement[]) {
   for (const element of elements) {
     app.appendChild(element);
   }
+
   return app;
 }
