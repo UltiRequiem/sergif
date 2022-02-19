@@ -5,6 +5,8 @@ export function Button(text: string, options: EleOptions = {}) {
   return createElement("button", text, {
     classes: [
       "bg-blue-500",
+      "max-w-2xl",
+      "my-3",
       "hover:bg-blue-700",
       "text-white",
       "font-bold",

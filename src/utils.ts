@@ -3,12 +3,22 @@ export interface EleOptions {
   attributes?: { [key: string]: string | boolean };
 }
 
-export function createElement(
+interface hehe {
+  [key: string]: string | boolean;
+}
+
+const pedro: hehe = {
+  name: "Pedro",
+  age: "23",
+  isAlive: true,
+};
+
+export function createElement<Element extends HTMLElement>(
   tag: string,
   text: string,
   options: EleOptions = {}
-) {
-  const element = document.createElement(tag);
+): Element {
+  const element: Element = document.createElement(tag);
 
   element.textContent = text;
 
@@ -33,4 +43,5 @@ export function addToApp(app: HTMLElement, ...elements: HTMLElement[]) {
   for (const element of elements) {
     app.appendChild(element);
   }
+  return app;
 }
