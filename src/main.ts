@@ -20,6 +20,8 @@ const appTitle = Title("Sergif");
 
 const GIFBox = RecordingFrame();
 
+let data: Blob;
+
 let recorder: {
   startRecording: () => void;
   camera: MediaStream;
@@ -65,7 +67,7 @@ const stopRecordingButton = RecordButtons("Stop recording", {
       this.disabled = true;
       // @ts-ignore
       recorder.stopRecording(() => {
-        stopRecordingCallback(recorder, GIFBox);
+        data = stopRecordingCallback(recorder, GIFBox);
       });
     },
   },
@@ -74,7 +76,7 @@ const stopRecordingButton = RecordButtons("Stop recording", {
 const downloadButton = DownloadButton({
   functions: {
     click() {
-      download(GIFBox.src, "myGif.gif", "image/gif");
+      download(data, "myGif.gif", "image/gif");
     },
   },
 });

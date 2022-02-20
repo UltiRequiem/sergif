@@ -3,7 +3,18 @@ export function captureCamera() {
 }
 
 export function stopRecordingCallback(recorder: any, image: HTMLImageElement) {
-  image.src = URL.createObjectURL(recorder);
+  let ultiBlob: Blob | undefined;
+
+  try {
+    ultiBlob = recorder.getBlob();
+    const url = URL.createObjectURL(ultiBlob as Blob);
+    image.src = url;
+  } catch (e) {
+    console.log(e);
+  }
+
   recorder.camera.stop();
   recorder.destroy();
+
+  return ultiBlob as Blob;
 }
