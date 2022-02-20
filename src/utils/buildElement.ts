@@ -33,10 +33,6 @@ export function createElement(
 
   if (options.functions) {
     for (const key in options.functions) {
-      console.log(`${key} ${options.functions[key]}`);
-
-      options.functions[key]();
-
       element.addEventListener(key, options.functions[key]);
     }
   }
