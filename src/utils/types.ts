@@ -4,4 +4,6 @@ export interface EleOptions<E extends HTMLElement> {
   functions?: { [key: string]: (this: E, ...args: any[]) => unknown };
 }
 
-export type FindOptions<T extends keyof HTMLElementTagNameMap> = EleOptions<HTMLElementTagNameMap[T]>;
+export type FindOptions<T extends keyof HTMLElementTagNameMap> = EleOptions<
+  HTMLElementTagNameMap[T]
+>;

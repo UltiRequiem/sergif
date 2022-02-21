@@ -1,16 +1,16 @@
 import RecordRTC from "recordrtc";
-import { addToElement, createElement, addCSS } from "./utils";
 import {
-  RecordButtons,
-  Title,
-  RecordingFrame,
   DownloadButton,
+  RecordButtons,
+  RecordingFrame,
+  Title,
 } from "./components";
+import { addCSS, addToElement, createElement } from "./utils";
 
 import { captureCamera, stopRecordingCallback } from "./gif";
 
-import "./style.css";
 import download from "downloadjs";
+import "./style.css";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
