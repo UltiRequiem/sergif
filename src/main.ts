@@ -59,13 +59,11 @@ const startRecordingButton = RecordButtons("Start Recording", {
 
 const stopRecordingButton = RecordButtons("Stop recording", {
   functions: {
-    click() {
+    click(this: HTMLButtonElement) {
       if (!recorder) {
         return;
       }
-      // @ts-ignore
       this.disabled = true;
-      // @ts-ignore
       recorder.stopRecording(() => {
         data = stopRecordingCallback(recorder, GIFBox);
       });
