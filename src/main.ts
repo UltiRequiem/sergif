@@ -20,7 +20,7 @@ addCSS(app, {
   alignItems: "center",
 });
 
-const appTitle = Title("Sergif");
+const appTitle = Title("SerGIF");
 
 const GIFBox = RecordingFrame();
 
@@ -32,14 +32,14 @@ let recorder: {
   stopRecording: (_: () => void) => void;
 };
 
-const startRecordingButton = RecordButtons("Start Recording", {
+const startRecordingButton = RecordButtons("Start", {
   functions: {
     async click() {
       this.disabled = true;
 
       const camera = await captureCamera();
 
-      recorder = RecordRTC(camera, {
+      recorder = new RecordRTC(camera, {
         type: "gif",
         frameRate: 10,
         quality: 10,
@@ -60,12 +60,9 @@ const startRecordingButton = RecordButtons("Start Recording", {
   },
 });
 
-const stopRecordingButton = RecordButtons("Stop recording", {
+const stopRecordingButton = RecordButtons("Stop", {
   functions: {
-    click(this: HTMLButtonElement) {
-      if (!recorder) {
-        return;
-      }
+    click() {
       this.disabled = true;
       recorder.stopRecording(() => {
         data = stopRecordingCallback(recorder, GIFBox);
@@ -84,11 +81,23 @@ const downloadButton = DownloadButton({
 
 addToElement(app, [
   appTitle,
-  startRecordingButton,
-  stopRecordingButton,
+  addToElement(createElement("div"), [
+    startRecordingButton,
+    stopRecordingButton,
+  ]),
   addToElement(
     createElement("div", { classes: ["w-60", "h-60", "bg-lime-500"] }),
     [GIFBox]
   ),
   downloadButton,
+  addToElement(
+    createElement("footer", "Made with ❤️  by ", {
+      classes: ["text-center", "text-gray-500"],
+    }),
+    [
+      createElement("a", "UltiRequiem", {
+        attributes: { href: "https://ultirequiem.com" },
+      }),
+    ]
+  ),
 ]);
