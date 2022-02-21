@@ -1,15 +1,10 @@
-import type { EleOptions } from "./types";
+import type { FindOptions } from "./types";
 
 export function createElement<Tag extends keyof HTMLElementTagNameMap>(
   tag: Tag,
-  text?: string | EleOptions,
-  options?: EleOptions
-): HTMLElementTagNameMap[Tag];
-export function createElement(
-  tag: string,
-  text: string | EleOptions = {},
-  options: EleOptions = {}
-): HTMLElement {
+  text?: string | FindOptions<Tag>,
+  options?: FindOptions<Tag>
+): HTMLElementTagNameMap[Tag] {
   const element = document.createElement(tag);
 
   if (typeof text === "string") {
@@ -17,23 +12,26 @@ export function createElement(
   } else {
     options = text;
   }
-  if (options.classes) {
-    if (typeof options.classes === "string") {
-      options.classes = options.classes.split(" ");
+
+  if (options) {
+    if (options.classes) {
+      if (typeof options.classes === "string") {
+        options.classes = options.classes.split(" ");
+      }
+
+      element.classList.add(...options.classes);
     }
 
-    element.classList.add(...options.classes);
-  }
-
-  if (options.attributes) {
-    for (const key in options.attributes) {
-      element.setAttribute(key, options.attributes[key].toString());
+    if (options.attributes) {
+      for (const key in options.attributes) {
+        element.setAttribute(key, options.attributes[key].toString());
+      }
     }
-  }
 
-  if (options.functions) {
-    for (const key in options.functions) {
-      element.addEventListener(key, options.functions[key]);
+    if (options.functions) {
+      for (const key in options.functions) {
+        element.addEventListener(key, options.functions[key]);
+      }
     }
   }
 

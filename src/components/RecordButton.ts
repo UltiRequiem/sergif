@@ -1,8 +1,7 @@
 import { createElement } from "../utils";
 import type { EleOptions } from "../utils";
 
-
-export const RecordButtons = (text: string, optionals: EleOptions = {}) =>
+export const RecordButtons = (text: string, optionals: EleOptions<HTMLButtonElement> = {}) =>
   createElement("button", text, {
     classes: [
       "bg-blue-500",

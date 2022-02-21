@@ -1,6 +1,8 @@
-export function addCSS<E extends HTMLElement, S extends CSSStyleDeclaration>(
+type CssStyleObject = Partial<CSSStyleDeclaration> & Record<string, string>;
+
+export function addCSS<E extends HTMLElement>(
   element: E,
-  styles: Partial<S>
+  styles: CssStyleObject
 ): E {
   for (const key in styles) {
     // @ts-ignore

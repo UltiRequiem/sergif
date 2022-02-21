@@ -14,7 +14,11 @@ import download from "downloadjs";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-addCSS(app, { display: "flex", flexDirection: "column", alignItems: "center" });
+addCSS(app, {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
 
 const appTitle = Title("Sergif");
 
@@ -25,13 +29,12 @@ let data: Blob;
 let recorder: {
   startRecording: () => void;
   camera: MediaStream;
-  stopRecording: (arg0: () => void) => void;
+  stopRecording: (_: () => void) => void;
 };
 
 const startRecordingButton = RecordButtons("Start Recording", {
   functions: {
     async click() {
-      // @ts-ignore
       this.disabled = true;
 
       const camera = await captureCamera();
