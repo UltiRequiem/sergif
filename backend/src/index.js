@@ -1,17 +1,16 @@
-import fastify from 'fastify';
-import fastifyStatic from 'fastify-static';
+const fastify = require('fastify');
+const fastifyStatic = require('fastify-static');
 
-import serverless from 'serverless-http';
+const serverless = require('serverless-http');
 
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'url';
+const { join } = require('path');
 
 const app = fastify();
 
 const development = process.env.ENV === 'dev';
 
 const buildPath = join(
-  dirname(fileURLToPath(import.meta.url)),
+  __dirname,
   '/..',
   '/../',
   development ? 'frontend/' : '',

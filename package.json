@@ -7,8 +7,10 @@
   "scripts": {
     "start": "yarn build:frontend && cd backend && yarn && yarn start ",
     "dev": "concurrently 'cd frontend && yarn dev:build' 'ENV=dev nodemon backend/index.js'",
+    "build:backend": "netlify-lambda build backend",
     "build:frontend": "cd frontend && yarn && yarn build && cp -r dist ..",
-    "format": "prettier --write '**/*.{ts,cjs,json,md,yaml,css,html}'",
+    "build": "yarn build:frontend && yarn build:backend",
+    "format": "prettier --write '**/*.{ts,cjs,js,json,md,yaml,css,html}'",
     "lint": "cd frontend && yarn lint && eslint ."
   },
   "devDependencies": {
@@ -16,6 +18,7 @@
     "@typescript-eslint/parser": "^5.12.1",
     "concurrently": "^7.0.0",
     "eslint": "^8.9.0",
+    "netlify-lambda": "^2.0.15",
     "typescript": "^4.5.5"
   }
 }
