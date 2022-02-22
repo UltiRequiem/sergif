@@ -1,5 +1,6 @@
 import RecordRTC from 'recordrtc';
 import download from 'downloadjs';
+import { nanoid } from 'nanoid';
 import {
   DownloadButton,
   RecordButtons,
@@ -30,6 +31,15 @@ let data: Blob;
 
 let recorder: Recorder;
 
+const downloadButton = DownloadButton({
+  attributes: { disabled: true },
+  functions: {
+    click() {
+      download(data, `${nanoid()}.gif`, 'image/gif');
+    },
+  },
+});
+
 const stopRecordingButton = RecordButtons('Stop', {
   functions: {
     click() {
@@ -38,6 +48,7 @@ const stopRecordingButton = RecordButtons('Stop', {
         const [blob, url] = stopRecordingCallback(recorder);
         data = blob;
         GIFBox.src = url;
+        downloadButton.disabled = false;
       });
     },
   },
@@ -70,15 +81,6 @@ const startRecordingButton = RecordButtons('Start', {
     },
   },
 });
-
-const downloadButton = DownloadButton({
-  functions: {
-    click() {
-      download(data, 'myGif.gif', 'image/gif');
-    },
-  },
-});
-
 addToElement(app, [
   appTitle,
   addToElement(createElement('div'), [

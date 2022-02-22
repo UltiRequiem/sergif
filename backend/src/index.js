@@ -8,8 +8,18 @@ import { fileURLToPath } from 'url';
 
 const app = fastify();
 
+const development = process.env.ENV === 'dev';
+
+const buildPath = join(
+  dirname(fileURLToPath(import.meta.url)),
+  '/..',
+  '/../',
+  development ? 'frontend/' : '',
+  'dist',
+);
+
 app.register(fastifyStatic, {
-  root: join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'dist'),
+  root: buildPath,
   prefix: '/',
 });
 

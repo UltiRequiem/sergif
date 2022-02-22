@@ -16,9 +16,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
-      'ignorePackages',
       {
-        js: 'never',
+        js: 'always',
       },
     ],
   },
@@ -41,7 +40,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-unsafe-call': 'off',
         'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': ['error'],
+        '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-empty-function': 'off',
         'import/extensions': [
           'error',
