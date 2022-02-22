@@ -1,4 +1,3 @@
-import { createElement } from "../utils";
+import { createElement } from '../utils';
 
-export const RecordingFrame = () =>
-  createElement("img", { classes: ["h-full"] });
+export const RecordingFrame = () => createElement('img', { classes: ['h-full'] });

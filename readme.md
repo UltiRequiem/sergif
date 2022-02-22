@@ -11,9 +11,17 @@ You can visit the site on 👇
 
 https://sergif.ultirequiem.com
 
-Or if you like the Netlify Domain 😆
+Or if you like the Netlify Domain...
 
 https://sergif.netlify.app
+
+## Stack
+
+All the components are defined using the
+[Document API](https://developer.mozilla.org/en-US/docs/Web/API/document), yes,
+Vanilla TypeScript 😆
+
+- [tailwindcss](https://tailwindcss.com)
 
 ### Others
 

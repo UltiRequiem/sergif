@@ -1,10 +1,8 @@
 export function addToElement<T extends HTMLElement>(
   app: T,
-  elements: HTMLElement[]
+  elements: HTMLElement[],
 ) {
-  for (const element of elements) {
-    app.appendChild(element);
-  }
+  elements.forEach((element) => app.append(element));
 
   return app;
 }
