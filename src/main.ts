@@ -9,6 +9,7 @@ import {
 import { addCSS, addToElement, createElement } from './utils';
 
 import { captureCamera, stopRecordingCallback } from './gif';
+import type { Recorder, CustomCamera } from './gif';
 
 import './style.css';
 
@@ -27,12 +28,7 @@ const GIFBox = RecordingFrame();
 
 let data: Blob;
 
-let recorder: {
-  startRecording: () => void;
-  camera: MediaStream;
-  // eslint-disable-next-line no-unused-vars
-  stopRecording: (_: () => void) => void;
-};
+let recorder: Recorder;
 
 const stopRecordingButton = RecordButtons('Stop', {
   functions: {
@@ -64,11 +60,11 @@ const startRecordingButton = RecordButtons('Start', {
         onGifPreview(gifURL: string) {
           GIFBox.src = gifURL;
         },
-      });
+      }) as Recorder;
 
       recorder.startRecording();
 
-      recorder.camera = camera;
+      recorder.camera = camera as CustomCamera;
 
       stopRecordingButton.disabled = false;
     },
