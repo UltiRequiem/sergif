@@ -1,0 +1,17 @@
+{
+  "name": "sergif-backend",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "fastify": "^3.27.2",
+    "fastify-static": "^4.5.0",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

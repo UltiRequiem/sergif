@@ -14,6 +14,13 @@ module.exports = {
 
   rules: {
     'import/prefer-default-export': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+      },
+    ],
   },
 
   overrides: [
@@ -27,7 +34,7 @@ module.exports = {
       ],
 
       parserOptions: {
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: `${__dirname}/frontend`,
         project: ['./tsconfig.json'],
       },
 

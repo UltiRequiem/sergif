@@ -1,29 +1,19 @@
 {
-  "name": "sergif",
-  "version": "0.1.0",
+  "private": "true",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "start": "yarn frontend && cd backend && yarn && yarn start",
+    "frontend": "cd frontend && yarn && yarn build && cp -r dist ..",
     "format": "prettier --write '**/*.{ts,cjs,json,md,yaml,css,html}'",
-    "lint": "tsc && eslint ."
+    "lint": "cd frontend && yarn lint && eslint ."
   },
   "devDependencies": {
-    "@types/downloadjs": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
-    "autoprefixer": "^10.4.2",
     "eslint": "^8.9.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "postcss": "^8.4.6",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.5.5",
-    "vite": "^2.8.0"
-  },
-  "dependencies": {
-    "downloadjs": "^1.4.7",
-    "recordrtc": "^5.6.2"
+    "typescript": "^4.5.5"
   }
 }
