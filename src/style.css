@@ -8,44 +8,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (max-width: 640px) {
-  #app * {
-    margin-bottom: 8%;
-  }
-}
-
-@media (min-width: 640px) {
-  #app * {
-    margin-bottom: 1.5%;
-  }
-}
-
-@media (max-width: 1200px) {
-  #app * {
-    margin-bottom: 4%;
-  }
-}
-
-@media (min-width: 1300px) {
-  #app * {
-    margin-bottom: 3%;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #232526;
-    background: -webkit-linear-gradient(to right, #414345, #232526);
-    background: linear-gradient(to right, #414345, #232526);
-
-    color: white;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background: #fafafa;
-
-    color: black;
-  }
+#app * {
+  margin-bottom: 1%;
 }
