@@ -26,6 +26,6 @@
     "dotenv": "^16.0.0",
     "downloadjs": "^1.4.7",
     "recordrtc": "^5.6.2",
-    "tixte": "^2.1.0"
+    "tixte": "^1.0.1"
   }
 }
