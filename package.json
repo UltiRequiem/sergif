@@ -23,9 +23,10 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "downloadjs": "^1.4.7",
-    "recordrtc": "^5.6.2",
-    "tixte": "^1.0.1"
+    "form-data": "^4.0.0",
+    "recordrtc": "^5.6.2"
   }
 }
