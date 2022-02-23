@@ -1,10 +1,15 @@
+import { client } from "utils/server";
+
 import type { Handler } from "@netlify/functions";
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
+
+  const result = await client.getSize();
+
+  console.log(result);
 
   return {
     statusCode: 200,
