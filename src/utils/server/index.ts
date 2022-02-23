@@ -2,4 +2,6 @@
 
 import { Client } from "./tixte";
 
-export const tixteClient = new Client(process.env.TIXTE_API_KEY!);
+export const tixteClient = new Client(process.env.TIXTE_API_KEY!, {
+  defaultURL: "ultirequiem.is-from.space",
+});

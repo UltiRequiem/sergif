@@ -1,11 +1,13 @@
 import Axios from "axios";
 import FormData from "form-data";
+import { nanoid } from "nanoid";
 
 import type {
   AccountDetails,
   DeleteFileResponse,
   SizeResponse,
   UploadFileResponse,
+  UploadOptions,
 } from "./tixte-types";
 
 enum ENDPOINTS {
@@ -20,7 +22,10 @@ enum ENDPOINTS {
 const fetcher = Axios.create({ baseURL: ENDPOINTS.BASE_URL });
 
 export class Client {
-  constructor(public apiKey: string) {
+  constructor(
+    private apiKey: string,
+    private options?: { defaultURL?: string }
+  ) {
     fetcher.defaults.headers.common["Authorization"] = this.apiKey;
   }
 
@@ -54,25 +59,29 @@ export class Client {
     return result.data;
   }
 
-  async uploadFile(
-    buffer: Buffer,
-    domain: string,
-    options: { filename?: number | string; extension?: string } = {}
-  ) {
+  async uploadFile(buffer: Buffer, options: UploadOptions = {}) {
+    if (!options.domain) {
+      if (!this.options?.defaultURL) {
+        throw new Error("No domain provided and no default URL set");
+      }
+
+      options.domain = this.options.defaultURL;
+    }
+
     const formData = new FormData();
 
     formData.append(
       "file",
       buffer,
-      `${options?.filename ?? Date.now()}.${options?.extension ?? "png"}`
+      `${options.filename ?? nanoid()}.${options.extension ?? "png"}`
     );
 
     const uploadResponse = await fetcher.post<UploadFileResponse>(
       ENDPOINTS.UPLOAD_ENDPOINT,
       formData,
       {
-        params: { random_name: options?.filename ? false : true },
-        headers: { ...formData.getHeaders(), domain },
+        params: { random_name: options.filename ? false : true },
+        headers: { ...formData.getHeaders(), domain: options.domain },
       }
     );
 

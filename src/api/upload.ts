@@ -27,20 +27,17 @@ export const handler: Handler = async (event, _context) => {
     };
   }
 
-  const post = await tixteClient.uploadFile(
-    new Buffer(event.body, "base64"),
-    "ultirequiem.is-from.space",
-    {
-      filename: "data",
-      extension: "png",
-    }
-  );
+  const post = await tixteClient.uploadFile(Buffer.from(event.body, "base64"), {
+    extension: "gif",
+  });
+
+  const { url, direct_url } = post.data;
 
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "text/json",
     },
-    body: JSON.stringify({ url: post.url }),
+    body: JSON.stringify({ url, direct_url }),
   };
 };

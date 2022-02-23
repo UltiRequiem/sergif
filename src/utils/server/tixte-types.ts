@@ -40,8 +40,9 @@ export interface SizeResponse {
 }
 
 export interface UploadOptions {
-  extension: string;
-  filename: string;
+  extension?: string;
+  filename?: string;
+  domain?: string;
 }
 
 export interface UpdateFileInfo {
