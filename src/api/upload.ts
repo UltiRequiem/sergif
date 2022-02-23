@@ -1,43 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
-import { tixteClient } from "utils/server";
+import { tixteClient, sendJSON } from "utils/server";
 import { Buffer } from "buffer";
 
 import type { Handler } from "@netlify/functions";
 
 export const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      headers: {
-        "Content-Type": "text/json",
-      },
-      body: JSON.stringify({ error: "Method Not Allowed" }),
-    };
+    return sendJSON({ error: "Method Not Allowed" }, { statusCode: 405 });
   }
 
   if (!event.body) {
-    return {
-      statusCode: 400,
-      headers: {
-        "Content-Type": "text/plain",
-      },
-      body: JSON.stringify({ error: "No file" }),
-    };
+    return sendJSON({ error: "No file" }, { statusCode: 400 });
   }
 
-  const post = await tixteClient.uploadFile(Buffer.from(event.body, "base64"), {
+  const {
+    data: { url, direct_url },
+  } = await tixteClient.uploadFile(Buffer.from(event.body, "base64"), {
     extension: "gif",
   });
 
-  const { url, direct_url } = post.data;
-
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "text/json",
-    },
-    body: JSON.stringify({ url, direct_url }),
-  };
+  return sendJSON({ url, direct_url });
 };
