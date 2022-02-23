@@ -8,6 +8,9 @@ export const handler: Handler = async (event, _context) => {
 
   return {
     statusCode: 200,
+    headers: {
+      "Content-Type": "text/json",
+    },
     body: JSON.stringify({ message: "Hello World" }),
   };
 };
