@@ -1,7 +1,5 @@
-import process from "process";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { Client } from "tixte";
 
-import "dotenv/config";
-
-export const client = new Client(process.env.TIXTE_API_KEY!);
+export const tixteClient = new Client(process.env.TIXTE_API_KEY!);

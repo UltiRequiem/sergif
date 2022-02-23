@@ -1,5 +1,5 @@
-import { createElement } from '../utils';
-import type { EleOptions } from '../utils';
+import { createElement } from '../utils/browser';
+import type { EleOptions } from '../utils/browser';
 
 export const RecordButtons = (
   text: string,

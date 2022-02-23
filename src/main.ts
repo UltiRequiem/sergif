@@ -1,28 +1,27 @@
-import RecordRTC from 'recordrtc';
-import download from 'downloadjs';
+import RecordRTC from "recordrtc";
+import download from "downloadjs";
 import {
   DownloadButton,
   RecordButtons,
   RecordingFrame,
   Title,
-} from './components';
-import { addCSS, addToElement, createElement } from './utils';
+} from "./components";
+import { addCSS, addToElement, createElement } from "./utils/browser";
 
-import { captureCamera, stopRecordingCallback } from './gif';
-import type { Recorder, CustomCamera } from './gif';
+import { captureCamera, stopRecordingCallback } from "./gif";
+import type { Recorder, CustomCamera } from "./gif";
 
-import './style.css';
+import "./style.css";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const app = document.querySelector<HTMLDivElement>('#app')!;
+const app = document.querySelector<HTMLDivElement>("#app")!;
 
 addCSS(app, {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
-const appTitle = Title('SerGIF');
+const appTitle = Title("SerGIF");
 
 const GIFBox = RecordingFrame();
 
@@ -30,7 +29,7 @@ let data: Blob;
 
 let recorder: Recorder;
 
-const stopRecordingButton = RecordButtons('Stop', {
+const stopRecordingButton = RecordButtons("Stop", {
   functions: {
     click() {
       this.disabled = true;
@@ -43,7 +42,7 @@ const stopRecordingButton = RecordButtons('Stop', {
   },
 });
 
-const startRecordingButton = RecordButtons('Start', {
+const startRecordingButton = RecordButtons("Start", {
   functions: {
     async click() {
       this.disabled = true;
@@ -51,7 +50,7 @@ const startRecordingButton = RecordButtons('Start', {
       const camera = await captureCamera();
 
       recorder = new RecordRTC(camera, {
-        type: 'gif',
+        type: "gif",
         frameRate: 10,
         quality: 10,
         width: 360,
@@ -74,30 +73,30 @@ const startRecordingButton = RecordButtons('Start', {
 const downloadButton = DownloadButton({
   functions: {
     click() {
-      download(data, 'myGif.gif', 'image/gif');
+      download(data, "myGif.gif", "image/gif");
     },
   },
 });
 
 addToElement(app, [
   appTitle,
-  addToElement(createElement('div'), [
+  addToElement(createElement("div"), [
     startRecordingButton,
     stopRecordingButton,
   ]),
   addToElement(
-    createElement('div', { classes: ['w-60', 'h-60', 'bg-lime-500'] }),
-    [GIFBox],
+    createElement("div", { classes: ["w-60", "h-60", "bg-lime-500"] }),
+    [GIFBox]
   ),
   downloadButton,
   addToElement(
-    createElement('footer', 'Made with ❤️  by ', {
-      classes: ['text-center', 'text-gray-500'],
+    createElement("footer", "Made with ❤️  by ", {
+      classes: ["text-center", "text-gray-500"],
     }),
     [
-      createElement('a', 'UltiRequiem', {
-        attributes: { href: 'https://ultirequiem.com' },
+      createElement("a", "UltiRequiem", {
+        attributes: { href: "https://ultirequiem.com" },
       }),
-    ],
+    ]
   ),
 ]);
