@@ -1,7 +1,7 @@
 import { createElement, addToElement } from "utils/browser";
 
 export const PreviousGIFS = async (page = 1) => {
-  const response = await fetch("/.netlify/functions/upload", {
+  const response = await fetch("/.netlify/functions/list", {
     method: "POST",
     body: JSON.stringify({
       page,
