@@ -209,7 +209,7 @@ const shareButton = ActionButton("Share", false, {
 
       await Swal.fire({
         title: "The link is copied to clipboard",
-        text: "Share your GIF!",
+        html: `Share your <a href="${process.link}" target="_blank">GIF</a>!`,
       });
 
       open(process.link, "_blank")?.focus();
