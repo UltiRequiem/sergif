@@ -15,7 +15,6 @@ import { captureCamera, stopRecordingCallback } from "./gif";
 import type { Recorder, CustomCamera } from "./gif";
 
 import "./style.css";
-
 import "sweetalert2/dist/sweetalert2.min.css";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -32,24 +31,20 @@ const appTitle = Title("SerGIF");
 
 const GIFBox = RecordingFrame();
 
-let data: Blob;
+let data: Blob, recorder: Recorder;
 
-let recorder: Recorder;
-
-const process = { start: false, finished: false, saved: false, link: "" };
+const processStatus = { start: false, finished: false, saved: false, link: "" };
 
 const stopRecordingButton = RecordButtons("Stop", {
   functions: {
     async click() {
-      if (process.finished) {
+      if (processStatus.finished) {
         await Swal.fire({
           title: "The process already finished",
           text: "Share or Download your GIF!",
         });
         return;
-      }
-
-      if (!process.start) {
+      } else if (!processStatus.start) {
         await Swal.fire({
           title: "The process is not started",
           text: "Please start the process",
@@ -63,7 +58,7 @@ const stopRecordingButton = RecordButtons("Stop", {
         GIFBox.src = url;
       });
 
-      process.finished = true;
+      processStatus.finished = true;
     },
   },
 });
@@ -71,17 +66,17 @@ const stopRecordingButton = RecordButtons("Stop", {
 const startRecordingButton = RecordButtons("Start", {
   functions: {
     async click() {
-      if (process.start) {
+      if (processStatus.start) {
         await Swal.fire({
           title: "The process already started",
-          text: process.finished
+          text: processStatus.finished
             ? `You want to record another? Check the "Record Again" button!`
             : "Please wait...",
         });
         return;
       }
 
-      process.start = true;
+      processStatus.start = true;
 
       const camera = await captureCamera();
 
@@ -107,10 +102,10 @@ const startRecordingButton = RecordButtons("Start", {
 const downloadButton = ActionButton("Download", true, {
   functions: {
     async click() {
-      if (!process.start || !process.finished) {
+      if (!processStatus.start || !processStatus.finished) {
         await Swal.fire({
           title: `The process ${
-            process.start ? "didn't finish" : "is not started"
+            processStatus.start ? "didn't finish" : "is not started"
           } yet!`,
           text: "Please finish the process",
         });
@@ -119,7 +114,7 @@ const downloadButton = ActionButton("Download", true, {
 
       download(data, `${nanoid()}.gif`, "image/gif");
 
-      process.saved = true;
+      processStatus.saved = true;
     },
   },
 });
@@ -127,7 +122,7 @@ const downloadButton = ActionButton("Download", true, {
 const recordOtherGIF = ReloadButton("Record Again", {
   functions: {
     async click() {
-      if (!process.start) {
+      if (!processStatus.start) {
         const result = await Swal.fire({
           title: "You didn't start the process yet!",
           text: "You still want to restart the process anyways?",
@@ -141,10 +136,7 @@ const recordOtherGIF = ReloadButton("Record Again", {
         if (!result.isConfirmed) {
           return;
         }
-      }
-
-      if (process.start && !process.finished) {
-        console.log(process);
+      } else if (processStatus.start && !processStatus.finished) {
         const result = await Swal.fire({
           title: "You didn't finish the process yet!",
           text: "You will lose the current GIF!",
@@ -158,9 +150,7 @@ const recordOtherGIF = ReloadButton("Record Again", {
         if (!result.isConfirmed) {
           return;
         }
-      }
-
-      if (process.start && process.finished && !process.saved) {
+      } else if (processStatus.finished && !processStatus.saved) {
         const result = await Swal.fire({
           title: "You didn't Download/Share the GIF yet!",
           text: "You will lose the current GIF!",
@@ -184,17 +174,17 @@ const recordOtherGIF = ReloadButton("Record Again", {
 const shareButton = ActionButton("Share", false, {
   functions: {
     async click() {
-      if (!process.start || !process.finished) {
+      if (!processStatus.start || !processStatus.finished) {
         await Swal.fire({
           title: `The process ${
-            process.start ? "didn't finish" : "is not started"
+            processStatus.start ? "didn't finish" : "is not started"
           } yet!`,
           text: "Please finish the process",
         });
         return;
       }
 
-      if (!process.link) {
+      if (!processStatus.link) {
         const response = await fetch("/.netlify/functions/upload", {
           method: "POST",
           body: data,
@@ -202,19 +192,19 @@ const shareButton = ActionButton("Share", false, {
 
         const parsedResponse = (await response.json()) as { url: string };
 
-        process.link = parsedResponse.url;
+        processStatus.link = parsedResponse.url;
       }
 
-      await navigator.clipboard.writeText(process.link);
+      await navigator.clipboard.writeText(processStatus.link);
 
       await Swal.fire({
         title: "The link is copied to clipboard",
-        html: `Share your <a class="underline text-blue" href="${process.link}" target="_blank">GIF</a>!`,
+        html: `Share your <a class="underline text-blue" href="${processStatus.link}" target="_blank">GIF</a>!`,
       });
 
-      open(process.link, "_blank")?.focus();
+      open(processStatus.link, "_blank")?.focus();
 
-      process.saved = true;
+      processStatus.saved = true;
     },
   },
 });

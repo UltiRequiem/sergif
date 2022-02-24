@@ -97,6 +97,14 @@ export class Client {
     return uploadResponse.data;
   }
 
+  async uploads(page = 1, amount = 3) {
+    const response = await fetcher.get(
+      `https://api.tixte.com/v1/users/@me/uploads?page=${page}&amount=${amount}`
+    );
+
+    return response.data as Record<string, any>;
+  }
+
   async deleteFile(id: string | number) {
     const uploadResponse = await fetcher.delete<DeleteFileResponse>(
       `${ENDPOINTS.FILE_ENDPOINT}/${id}`
