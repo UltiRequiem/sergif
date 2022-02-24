@@ -15,6 +15,14 @@ Or if you like the Netlify Domain...
 
 https://sergif.netlify.app
 
+## Stack
+
+- [Kumeru](https://github.com/UltiRequiem/kumeru): A low-level HyperScript-like Frontend Library
+
+- [Netfun](https://github.com/UltiRequiem/netfun): The Netlify Functions Framework
+
+- [Tailwind CSS](https://tailwindcss.com): A utility-first CSS framework
+
 ## Media
 
 [Release Tweet](https://twitter.com/UltiRequiem/status/1496979672600653826)
