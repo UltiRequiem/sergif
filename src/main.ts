@@ -2,15 +2,10 @@ import RecordRTC from "recordrtc";
 import Swal from "sweetalert2";
 import download from "downloadjs";
 import { nanoid } from "nanoid";
-import {
-  ActionButton,
-  RecordButtons,
-  RecordingFrame,
-  ReloadButton,
-  Title,
-} from "ui/components";
-import { Footer } from "ui/containers";
-import { addCSS, addToElement, createElement } from "utils/browser";
+
+import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
+import { AppTitle, Legend, GIFBox, Footer } from "ui/containers";
+import { addToElement, createElement } from "utils/browser";
 
 import { captureCamera, stopRecordingCallback } from "gif";
 import type { Recorder, CustomCamera } from "gif";
@@ -21,16 +16,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-addCSS(app, {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-});
-
-const appTitle = Title("SerGIF");
-
-const GIFBox = RecordingFrame();
+app.classList.add("flex", "flex-col", "items-center");
 
 let data: Blob, recorder: Recorder;
 
@@ -211,12 +197,8 @@ const shareButton = ActionButton("Share", false, {
 });
 
 addToElement(app, [
-  appTitle,
-  createElement(
-    "p",
-    "Record GIFs with your camera, and share them with your friends!",
-    { classes: "p-2" }
-  ),
+  AppTitle,
+  Legend,
   addToElement(createElement("div"), [
     startRecordingButton,
     stopRecordingButton,
