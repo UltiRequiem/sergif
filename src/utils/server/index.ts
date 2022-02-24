@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import { Client } from "./tixte";
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const tixteClient = new Client(process.env.TIXTE_API_KEY!, {
   defaultURL: "ultirequiem.is-from.space",
 });

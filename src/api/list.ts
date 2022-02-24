@@ -4,6 +4,7 @@ import { tixteClient, sendJSON } from "utils/server";
 
 import type { Handler } from "@netlify/functions";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
     return sendJSON({ error: "Method Not Allowed" }, { statusCode: 405 });
@@ -25,7 +26,7 @@ export const handler: Handler = async (event, _context) => {
   const { data } = await tixteClient.uploads(page, amount ?? 3);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const urls = data.uploads!.map(
+  const urls = data.uploads?.map(
     ({ domain, name, extension }: Record<string, string>) =>
       `https://${domain}/r/${name}.${extension}`
   );

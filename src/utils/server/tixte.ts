@@ -102,6 +102,7 @@ export class Client {
       `https://api.tixte.com/v1/users/@me/uploads?page=${page}&amount=${amount}`
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return response.data as Record<string, any>;
   }
 

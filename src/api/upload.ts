@@ -3,6 +3,7 @@ import { Buffer } from "buffer";
 
 import type { Handler } from "@netlify/functions";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
     return sendJSON({ error: "Method Not Allowed" }, { statusCode: 405 });

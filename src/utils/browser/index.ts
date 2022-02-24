@@ -5,4 +5,4 @@ export * from "./buildNSElement";
 export * from "./types";
 export * from "./wrapElements";
 export * from "./errors";
-export * from "./render"
+export * from "./render";
