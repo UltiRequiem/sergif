@@ -12,7 +12,7 @@ export const Footer = addToElement(
         "hover:underline",
         "hover:text-pink-700",
       ],
-      attributes: { href: "https://ultirequiem.com" },
+      attributes: { href: "https://ultirequiem.com", target: "_blank" },
     }),
     addToElement(createElement("p"), [
       createElement("a", "Visit the source code", {
