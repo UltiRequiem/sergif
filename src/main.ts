@@ -7,6 +7,7 @@ import {
   RecordButtons,
   RecordingFrame,
   ReloadButton,
+  PreviousGIFS,
   Title,
 } from "./components";
 import { addCSS, addToElement, createElement } from "./utils/browser";

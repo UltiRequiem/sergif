@@ -5,7 +5,7 @@ import { tixteClient, sendJSON } from "utils/server";
 import type { Handler } from "@netlify/functions";
 
 export const handler: Handler = async (event, _context) => {
-  if (event.httpMethod !== "GET") {
+  if (event.httpMethod !== "POST") {
     return sendJSON({ error: "Method Not Allowed" }, { statusCode: 405 });
   }
 
