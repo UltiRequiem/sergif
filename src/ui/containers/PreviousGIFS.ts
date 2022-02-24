@@ -23,7 +23,7 @@ export const PreviousGIFS = async (page = 1) => {
         attributes: { src: url },
         functions: {
           click: () => {
-            window.open(url, "_blank");
+            open(url, "_blank")?.focus();
           },
         },
         classes: "w-[90%] h-[90%]",
