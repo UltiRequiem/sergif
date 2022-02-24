@@ -99,7 +99,11 @@ export class Client {
 
   async uploads(page = 1, amount = 3) {
     const response = await fetcher.get(
-      `https://api.tixte.com/v1/users/@me/uploads?page=${page}&amount=${amount}`
+      `${
+        ENDPOINTS.BASE_URL +
+        ENDPOINTS.ACCOUNT_ENDPOINT +
+        ENDPOINTS.UPLOAD_ENDPOINT
+      }?page=${page}&amount=${amount}`
     );
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
