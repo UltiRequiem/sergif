@@ -19,4 +19,5 @@ module.exports = {
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-empty-function": "off",
   },
+  ignorePatterns: ["*.js", "*.cjs"],
 };
