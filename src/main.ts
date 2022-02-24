@@ -160,7 +160,7 @@ const recordOtherGIF = ReloadButton("Record Again", {
         }
       }
 
-      if (!process.saved) {
+      if (process.start && process.finished && !process.saved) {
         const result = await Swal.fire({
           title: "You didn't Download/Share the GIF yet!",
           text: "You will lose the current GIF!",
