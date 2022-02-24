@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
 import { AppTitle, Legend, GIFBox, Footer } from "ui/containers";
-import { addToElement, createElement, wrapElements } from "utils/browser";
+import { wrapElements } from "utils/browser";
 
 import { captureCamera, stopRecordingCallback } from "utils/gif";
 import type { Recorder, CustomCamera } from "utils/gif";
@@ -205,18 +205,15 @@ const shareButton = ActionButton("Share", false, {
   },
 });
 
-const App = addToElement(
-  createElement("div", { classes: "flex flex-col items-center text-center" }),
-  [
-    AppTitle,
-    Legend,
-    wrapElements(startRecordingButton, stopRecordingButton),
-    wrapElements("w-80 h-60 bg-lime-500", GIFBox),
-    wrapElements(downloadButton, shareButton),
-    addToElement(createElement("div"), [downloadButton, shareButton]),
-    recordOtherGIF,
-    Footer,
-  ]
+const App = wrapElements(
+  "flex flex-col items-center text-center",
+  AppTitle,
+  Legend,
+  wrapElements(startRecordingButton, stopRecordingButton),
+  wrapElements("w-80 h-60 bg-lime-500", GIFBox),
+  wrapElements(downloadButton, shareButton),
+  recordOtherGIF,
+  Footer
 );
 
 export default App;
