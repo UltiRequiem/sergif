@@ -205,7 +205,6 @@ const shareButton = ActionButton("Share", false, {
   },
 });
 
-
 const seeOtherUsersGIFsButton = ActionButton("See Other Users GIFs", false, {
   functions: {
     async click() {
