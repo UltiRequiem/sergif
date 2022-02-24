@@ -5,7 +5,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "backend": "netlify functions:serve",
     "format": "prettier --write '**/*.{ts,cjs,json,md,yaml,css,html}'",
     "lint": "tsc && eslint . && prettier --check '**/*.{ts,cjs,json,md,yaml,css,html}'"
   },
@@ -17,7 +16,6 @@
     "@typescript-eslint/parser": "^5.12.1",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.9.0",
-    "netlify-cli": "^9.7.0",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.23",
