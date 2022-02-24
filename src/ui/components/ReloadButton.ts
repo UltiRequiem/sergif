@@ -1,16 +1,16 @@
-import { createElement } from "../utils/browser";
-import type { EleOptions } from "../utils/browser";
+import { createElement } from "utils/browser";
+import type { EleOptions } from "utils/browser";
 
-export const RecordButtons = (
+export const ReloadButton = (
   text: string,
   optionals: EleOptions<HTMLButtonElement> = {}
 ) =>
   createElement("button", text, {
     classes: [
-      "bg-blue-500",
+      "bg-orange-500",
       "mx-3",
       "my-3",
-      "hover:bg-blue-700",
+      "hover:bg-orange-700",
       "text-white",
       "font-bold",
       "py-3",

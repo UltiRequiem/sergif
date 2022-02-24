@@ -7,15 +7,15 @@ import {
   RecordButtons,
   RecordingFrame,
   ReloadButton,
-  PreviousGIFS,
   Title,
-} from "./components";
-import { addCSS, addToElement, createElement } from "./utils/browser";
+} from "ui/components";
+import { Footer } from "ui/containers";
+import { addCSS, addToElement, createElement } from "utils/browser";
 
-import { captureCamera, stopRecordingCallback } from "./gif";
-import type { Recorder, CustomCamera } from "./gif";
+import { captureCamera, stopRecordingCallback } from "gif";
+import type { Recorder, CustomCamera } from "gif";
 
-import "./style.css";
+import "style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -227,34 +227,5 @@ addToElement(app, [
   ),
   addToElement(createElement("div"), [downloadButton, shareButton]),
   recordOtherGIF,
-  addToElement(
-    createElement("footer", "Made with ❤️  by ", {
-      classes: ["text-center", "text-yellow-500"],
-    }),
-    [
-      createElement("a", "UltiRequiem", {
-        classes: [
-          "text-pink-500",
-          "text-xl",
-          "hover:underline",
-          "hover:text-pink-700",
-        ],
-        attributes: { href: "https://ultirequiem.com" },
-      }),
-      addToElement(createElement("p"), [
-        createElement("a", "Visit the source code", {
-          classes: [
-            "text-gray-500",
-            "text-sm",
-            "hover:underline",
-            "hover:text-gray-700",
-          ],
-          attributes: {
-            href: "https://github.com/UltiRequiem/sergif",
-            target: "_blank",
-          },
-        }),
-      ]),
-    ]
-  ),
+  Footer(),
 ]);

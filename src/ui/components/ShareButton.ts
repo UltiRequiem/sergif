@@ -1,5 +1,5 @@
-import { createElement } from "../utils/browser";
-import type { EleOptions } from "../utils/browser";
+import { createElement } from "utils/browser";
+import type { EleOptions } from "utils/browser";
 
 export const DownloadButton = (others: EleOptions<HTMLButtonElement> = {}) =>
   createElement("button", "Download", {

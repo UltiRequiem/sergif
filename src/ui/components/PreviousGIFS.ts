@@ -1,4 +1,4 @@
-import { createElement, addToElement } from "../utils/browser";
+import { createElement, addToElement } from "utils/browser";
 
 export const PreviousGIFS = async () => {
   const response = await fetch("/.netlify/functions/upload", {

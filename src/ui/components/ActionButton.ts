@@ -1,5 +1,5 @@
-import { createElement, addToElement } from "../utils/browser";
-import type { EleOptions } from "../utils/browser";
+import { createElement, addToElement } from "utils/browser";
+import type { EleOptions } from "utils/browser";
 
 export const ActionButton = (
   text = "Download",
