@@ -212,6 +212,8 @@ const shareButton = ActionButton("Share", false, {
         text: "Share your GIF!",
       });
 
+      open(process.link, "_blank")?.focus();
+
       process.saved = true;
     },
   },

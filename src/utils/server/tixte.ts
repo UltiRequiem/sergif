@@ -41,7 +41,7 @@ export class Client {
   }
 
   /**
-   * [Account Token Only] Gets all domains registered by user
+   * Gets all domains registered by user
    */
   async domains() {
     const result = await fetcher.get<AccountDetails>(
