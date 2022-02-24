@@ -27,6 +27,7 @@
     "axios": "^0.26.0",
     "downloadjs": "^1.4.7",
     "form-data": "^4.0.0",
+    "kumeru": "^1.0.0",
     "recordrtc": "^5.6.2",
     "sweetalert2": "^11.4.4"
   }

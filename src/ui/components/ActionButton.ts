@@ -1,5 +1,5 @@
-import { createElement } from "utils/browser";
-import type { EleOptions } from "utils/browser";
+import { createElement } from "kumeru";
+import type { EleOptions } from "kumeru";
 
 export const ActionButton = (
   text = "Download",

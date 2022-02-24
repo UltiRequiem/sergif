@@ -1,4 +1,4 @@
-import { createElement } from "utils/browser";
+import { createElement } from "kumeru";
 
 export const Title = (text: string) =>
   createElement("h1", text, {

@@ -1,5 +1,5 @@
 import { Title } from "ui/components";
-import { createElement } from "utils/browser";
+import { createElement } from "kumeru";
 
 export const AppTitle = Title("SerGIF");
 

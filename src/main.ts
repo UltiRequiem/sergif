@@ -1,5 +1,5 @@
-import App from "app";
+import { render } from "kumeru";
 
-import { render } from "utils/browser";
+import App from "app";
 
 render("app", App);

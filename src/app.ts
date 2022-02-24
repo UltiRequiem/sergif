@@ -3,9 +3,10 @@ import Swal from "sweetalert2";
 import download from "downloadjs";
 import { nanoid } from "nanoid";
 
+import { wrapElements } from "kumeru";
+
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
 import { AppTitle, Legend, GIFBox, Footer, PreviousGIFS } from "ui/containers";
-import { wrapElements } from "utils/browser";
 
 import { captureCamera, stopRecordingCallback } from "utils/gif";
 import type { Recorder, CustomCamera } from "utils/gif";

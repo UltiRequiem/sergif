@@ -1,4 +1,4 @@
-import { addToElement, createElement } from "utils/browser";
+import { addToElement, createElement } from "kumeru";
 
 export const Footer = addToElement(
   createElement("footer", "Made with ❤️  by ", {

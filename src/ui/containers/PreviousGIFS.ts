@@ -1,4 +1,4 @@
-import { createElement, addToElement } from "utils/browser";
+import { createElement, addToElement } from "kumeru";
 
 export const PreviousGIFS = async (page = 1) => {
   const response = await fetch("/.netlify/functions/list", {
