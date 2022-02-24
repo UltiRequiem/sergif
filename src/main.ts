@@ -36,7 +36,7 @@ let data: Blob;
 
 let recorder: Recorder;
 
-const process = { start: false, finished: false, saved: false };
+const process = { start: false, finished: false, saved: false, link: "" };
 
 const stopRecordingButton = RecordButtons("Stop", {
   functions: {
@@ -194,14 +194,18 @@ const shareButton = ActionButton("Share", false, {
         return;
       }
 
-      const response = await fetch("/.netlify/functions/upload", {
-        method: "POST",
-        body: data,
-      });
+      if (!process.link) {
+        const response = await fetch("/.netlify/functions/upload", {
+          method: "POST",
+          body: data,
+        });
 
-      const parsedResponse = (await response.json()) as { url: string };
+        const parsedResponse = (await response.json()) as { url: string };
 
-      await navigator.clipboard.writeText(parsedResponse.url);
+        process.link = parsedResponse.url;
+      }
+
+      await navigator.clipboard.writeText(process.link);
 
       await Swal.fire({
         title: "The link is copied to clipboard",
