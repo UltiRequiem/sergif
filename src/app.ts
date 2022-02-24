@@ -15,7 +15,12 @@ import "sweetalert2/dist/sweetalert2.min.css";
 
 let data: Blob, recorder: Recorder;
 
-const processStatus = { start: false, finished: false, saved: false, link: "" };
+const processStatus = {
+  start: false,
+  finished: false,
+  saved: false,
+  link: "",
+};
 
 const stopRecordingButton = RecordButtons("Stop", {
   functions: {
@@ -171,6 +176,15 @@ const shareButton = ActionButton("Share", false, {
           method: "POST",
           body: data,
         });
+
+        if (!response.ok) {
+          await Swal.fire({
+            title: "Server Error",
+            text: "Please try again later",
+            icon: "error",
+          });
+          return;
+        }
 
         const parsedResponse = (await response.json()) as { url: string };
 
