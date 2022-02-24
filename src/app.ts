@@ -192,7 +192,7 @@ const shareButton = ActionButton("Share", false, {
 });
 
 const App = addToElement(
-  createElement("div", { classes: "flex flex-col items-center" }),
+  createElement("div", { classes: "flex flex-col items-center text-center" }),
   [
     AppTitle,
     Legend,
