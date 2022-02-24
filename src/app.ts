@@ -4,7 +4,7 @@ import download from "downloadjs";
 import { nanoid } from "nanoid";
 
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
-import { AppTitle, Legend, GIFBox, Footer } from "ui/containers";
+import { AppTitle, Legend, GIFBox, Footer, PreviousGIFS } from "ui/containers";
 import { wrapElements } from "utils/browser";
 
 import { captureCamera, stopRecordingCallback } from "utils/gif";
@@ -205,6 +205,21 @@ const shareButton = ActionButton("Share", false, {
   },
 });
 
+
+const seeOtherUsersGIFsButton = ActionButton("See Other Users GIFs", false, {
+  functions: {
+    async click() {
+      const gifs = await PreviousGIFS();
+
+      if (App.children.length >= 9) {
+        return;
+      }
+
+      App.insertBefore(gifs, App.children[7]);
+    },
+  },
+});
+
 const App = wrapElements(
   "flex flex-col items-center text-center",
   AppTitle,
@@ -213,6 +228,7 @@ const App = wrapElements(
   wrapElements("w-80 h-60 bg-lime-500", GIFBox),
   wrapElements(downloadButton, shareButton),
   recordOtherGIF,
+  seeOtherUsersGIFsButton,
   Footer
 );
 

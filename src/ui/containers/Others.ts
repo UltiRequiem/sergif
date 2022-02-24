@@ -1,4 +1,4 @@
-import { Title, RecordingFrame } from "ui/components";
+import { Title } from "ui/components";
 import { createElement } from "utils/browser";
 
 export const AppTitle = Title("SerGIF");
@@ -9,4 +9,4 @@ export const Legend = createElement(
   { classes: "p-2" }
 );
 
-export const GIFBox = RecordingFrame();
+export const GIFBox = createElement("img", { classes: ["h-full"] });
