@@ -17,7 +17,7 @@ export const PreviousGIFS = async (page = 1) => {
       ];
 
   return addToElement(
-    createElement("div", { classes: "grid grid-cols-1 sm:grid-cols-3" }),
+    createElement("div", { classes: "m-1 grid grid-cols-1 sm:grid-cols-3" }),
     data.map((url) =>
       createElement("img", {
         attributes: { src: url },
