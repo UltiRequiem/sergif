@@ -21,6 +21,8 @@ https://sergif.netlify.app
 
 - [Netfun](https://github.com/UltiRequiem/netfun): The Netlify Functions Framework
 
+> Kumeru and NetFun are made by me 😆
+
 - [Tailwind CSS](https://tailwindcss.com): A utility-first CSS framework
 
 ## Media
