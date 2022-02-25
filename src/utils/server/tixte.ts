@@ -100,9 +100,7 @@ export class Client {
   async uploads(page = 1, amount = 3) {
     const response = await fetcher.get(
       `${
-        ENDPOINTS.BASE_URL +
-        ENDPOINTS.ACCOUNT_ENDPOINT +
-        ENDPOINTS.UPLOAD_ENDPOINT
+        ENDPOINTS.BASE_URL + ENDPOINTS.FILE_ENDPOINT
       }?page=${page}&amount=${amount}`
     );
 

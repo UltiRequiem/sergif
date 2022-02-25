@@ -8,8 +8,8 @@ import { wrapElements } from "kumeru";
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
 import { AppTitle, Legend, GIFBox, Footer, PreviousGIFS } from "ui/containers";
 
-import { captureCamera, stopRecordingCallback } from "utils/gif";
-import type { Recorder, CustomCamera } from "utils/gif";
+import { captureCamera, stopRecordingCallback } from "gif";
+import type { Recorder, CustomCamera } from "gif";
 
 import "style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
