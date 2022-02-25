@@ -6,10 +6,10 @@ import { nanoid } from "nanoid";
 import { wrapElements } from "kumeru";
 
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
-import { AppTitle, Legend, GIFBox, Footer, PreviousGIFS } from "ui/containers";
+import { AppTitle, Footer, GIFBox, Legend, PreviousGIFS } from "ui/containers";
 
 import { captureCamera, stopRecordingCallback } from "gif";
-import type { Recorder, CustomCamera } from "gif";
+import type { CustomCamera, Recorder } from "gif";
 
 import "style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
