@@ -1,7 +1,6 @@
 import { Buffer } from "buffer";
 
 import { createHandler } from "netfun";
-
 import { TixteClient } from "@ultirequiem/tixte";
 
 export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY!, {
