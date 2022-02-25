@@ -2,7 +2,11 @@ import { Buffer } from "buffer";
 
 import { createHandler } from "netfun";
 
-import { tixteClient } from "utils/server";
+import { TixteClient } from "@ultirequiem/tixte";
+
+export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY!, {
+  defaultURL: "sergif.likes.cash",
+});
 
 import type { Handler } from "netfun";
 
