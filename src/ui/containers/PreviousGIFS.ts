@@ -18,12 +18,12 @@ export const PreviousGIFS = async (page = 1) => {
 
   return addToElement(
     createElement("div", { classes: "m-1 grid grid-cols-1 sm:grid-cols-3" }),
-    data.map((url) =>
+    data.map((src) =>
       createElement("img", {
-        attributes: { src: url },
+        attributes: { src },
         functions: {
-          click: () => {
-            open(url, "_blank")?.focus();
+          click() {
+            open(src, "_blank")?.focus();
           },
         },
         classes: "w-[90%] h-[90%]",

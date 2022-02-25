@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
 import { createHandler } from "netfun";
 import type { Handler } from "netfun";
 import { TixteClient } from "@ultirequiem/tixte";
@@ -20,12 +18,12 @@ const list: Handler = async (event) => {
 
   const { data } = await tixteClient.uploads(page, amount ?? 3);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const urls = data.uploads!.map(
     ({ domain, name, extension }: Record<string, string>) =>
       `https://${domain}/r/${name}.${extension}`
   ) as string[];
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return urls;
 };
 
