@@ -1,9 +1,8 @@
 import { createElement } from "kumeru";
 
-export const AppTitle = 
-  createElement("h1", "Sergif", {
-    classes: "underline hover:underline decoration-pink-500 text-7xl my-7",
-  });
+export const AppTitle = createElement("h1", "Sergif", {
+  classes: "underline hover:underline decoration-pink-500 text-7xl my-7",
+});
 
 export const Legend = createElement(
   "p",
