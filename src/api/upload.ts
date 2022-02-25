@@ -1,5 +1,10 @@
-import { tixteClient, Handler, createHandler } from "utils/server";
 import { Buffer } from "buffer";
+
+import { createHandler } from "netfun";
+
+import { tixteClient } from "utils/server";
+
+import type { Handler } from "netfun";
 
 export const upload: Handler = async (event) => {
   const {

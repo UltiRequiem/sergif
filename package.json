@@ -9,7 +9,6 @@
     "lint": "tsc && eslint . && prettier --check '**/*.{ts,cjs,json,md,yaml,css,html}'"
   },
   "devDependencies": {
-    "@netlify/functions": "^1.0.0",
     "@types/downloadjs": "^1.4.3",
     "@types/node": "^17.0.19",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
@@ -28,6 +27,7 @@
     "downloadjs": "^1.4.7",
     "form-data": "^4.0.0",
     "kumeru": "^1.0.0",
+    "netfun": "^0.1.0",
     "recordrtc": "^5.6.2",
     "sweetalert2": "^11.4.4"
   }

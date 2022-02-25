@@ -8,6 +8,3 @@ import { Client } from "./tixte";
 export const tixteClient = new Client(process.env.TIXTE_API_KEY!, {
   defaultURL: "sergif.likes.cash",
 });
-console.log(tixteClient);
-
-export * from "./netfun"

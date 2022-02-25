@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { tixteClient, createHandler } from "utils/server";
-import type { Handler } from "utils/server";
+import { createHandler } from "netfun";
+import type { Handler } from "netfun";
+
+import { tixteClient } from "utils/server";
 
 const list: Handler = async (event) => {
   const { page, amount } = JSON.parse(event.body!) as Record<
