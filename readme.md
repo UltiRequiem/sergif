@@ -17,6 +17,8 @@ Or if you like the Netlify Domain...
 
 https://sergif.netlify.app
 
+[Join the Discord Server!](https://discord.gg/XW8mK5yu5R)
+
 ## Stack
 
 - [Kumeru](https://github.com/UltiRequiem/kumeru): A low-level HyperScript-like

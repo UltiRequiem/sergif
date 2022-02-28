@@ -206,10 +206,18 @@ const shareButton = ActionButton("Share", false, {
   },
 });
 
+let alreadyFetched = false;
+
 const seeOtherUsersGIFsButton = ActionButton("See Other Users GIFs", false, {
   functions: {
     async click() {
+      if (alreadyFetched) {
+        return;
+      }
+      
       const gifs = await PreviousGIFS();
+
+      alreadyFetched = true;
 
       if (App.children.length >= 9) {
         return;
