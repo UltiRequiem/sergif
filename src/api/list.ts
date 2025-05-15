@@ -2,8 +2,8 @@ import { createHandler } from "netfun";
 import type { Handler } from "netfun";
 import { TixteClient } from "@ultirequiem/tixte";
 
-export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY!, {
-  defaultURL: "sergif.likes.cash",
+export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY2!, {
+  defaultURL: "ultirequiem.is-from.space",
 });
 
 const list: Handler = async (event) => {
