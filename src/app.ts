@@ -11,6 +11,8 @@ import { AppTitle, Footer, GIFBox, Legend, PreviousGIFS } from "ui/containers";
 import { captureCamera, stopRecordingCallback } from "gif";
 import type { CustomCamera, Recorder } from "gif";
 
+import { buildTweetLink } from "services/twitter";
+
 import "style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 
@@ -206,6 +208,51 @@ const shareButton = ActionButton("Share", false, {
   },
 });
 
+const twitterShareButton = ActionButton("Share on Twitter", false, {
+  functions: {
+    async click() {
+      if (!processStatus.start || !processStatus.finished) {
+        await Swal.fire({
+          title: `The process ${
+            processStatus.start ? "didn't finish" : "is not started"
+          } yet!`,
+          text: "Please finish the process",
+        });
+        return;
+      }
+
+      if (!processStatus.link) {
+        const response = await fetch("/.netlify/functions/upload", {
+          method: "POST",
+          body: data,
+        });
+
+        if (!response.ok) {
+          await Swal.fire({
+            title: "Server Error",
+            text: "Please try again later",
+            icon: "error",
+          });
+          return;
+        }
+
+        const parsedResponse = (await response.json()) as { url: string };
+
+        processStatus.link = parsedResponse.url;
+      }
+
+      const tweetLink = buildTweetLink(
+        processStatus.link,
+        "Check out this GIF I made with Sergif! 🎥✨"
+      );
+
+      open(tweetLink, "_blank")?.focus();
+
+      processStatus.saved = true;
+    },
+  },
+});
+
 let alreadyFetched = false;
 
 const seeOtherUsersGIFsButton = ActionButton("See Other Users GIFs", false, {
@@ -234,7 +281,7 @@ const App = wrapElements(
   Legend,
   wrapElements(startRecordingButton, stopRecordingButton),
   wrapElements("w-80 h-60 bg-lime-500", GIFBox),
-  wrapElements(downloadButton, shareButton),
+  wrapElements(downloadButton, shareButton, twitterShareButton),
   recordOtherGIF,
   seeOtherUsersGIFsButton,
   Footer
