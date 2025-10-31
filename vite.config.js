@@ -2,9 +2,9 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [tsconfigPaths()],
-  build: {
-    target: "es2015",
-    polyfillModulePreload: true,
-  },
+	plugins: [tsconfigPaths()],
+	build: {
+		target: "es2015",
+		polyfillModulePreload: true,
+	},
 });

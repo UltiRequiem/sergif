@@ -1,17 +1,13 @@
-import RecordRTC from "recordrtc";
-import Swal from "sweetalert2";
 import download from "downloadjs";
-import { nanoid } from "nanoid";
-
+import type { CustomCamera, Recorder } from "gif";
+import { captureCamera, stopRecordingCallback } from "gif";
 import { wrapElements } from "kumeru";
-
+import { nanoid } from "nanoid";
+import RecordRTC from "recordrtc";
+import { buildTweetLink } from "services/twitter";
+import Swal from "sweetalert2";
 import { ActionButton, RecordButtons, ReloadButton } from "ui/components";
 import { AppTitle, Footer, GIFBox, Legend, PreviousGIFS } from "ui/containers";
-
-import { captureCamera, stopRecordingCallback } from "gif";
-import type { CustomCamera, Recorder } from "gif";
-
-import { buildTweetLink } from "services/twitter";
 
 import "style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
