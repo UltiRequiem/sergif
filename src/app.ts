@@ -18,11 +18,32 @@ import "sweetalert2/dist/sweetalert2.min.css";
 
 let data: Blob, recorder: Recorder;
 
+const TWITTER_SHARE_TEXT = "Check out this GIF I made with Sergif! 🎥✨";
+
 const processStatus = {
   start: false,
   finished: false,
   saved: false,
   link: "",
+};
+
+const uploadGIF = async (): Promise<string | null> => {
+  const response = await fetch("/.netlify/functions/upload", {
+    method: "POST",
+    body: data,
+  });
+
+  if (!response.ok) {
+    await Swal.fire({
+      title: "Server Error",
+      text: "Please try again later",
+      icon: "error",
+    });
+    return null;
+  }
+
+  const parsedResponse = (await response.json()) as { url: string };
+  return parsedResponse.url;
 };
 
 const stopRecordingButton = RecordButtons("Stop", {
@@ -175,23 +196,11 @@ const shareButton = ActionButton("Share", false, {
       }
 
       if (!processStatus.link) {
-        const response = await fetch("/.netlify/functions/upload", {
-          method: "POST",
-          body: data,
-        });
-
-        if (!response.ok) {
-          await Swal.fire({
-            title: "Server Error",
-            text: "Please try again later",
-            icon: "error",
-          });
+        const uploadedUrl = await uploadGIF();
+        if (!uploadedUrl) {
           return;
         }
-
-        const parsedResponse = (await response.json()) as { url: string };
-
-        processStatus.link = parsedResponse.url;
+        processStatus.link = uploadedUrl;
       }
 
       await navigator.clipboard.writeText(processStatus.link);
@@ -222,29 +231,14 @@ const twitterShareButton = ActionButton("Share on Twitter", false, {
       }
 
       if (!processStatus.link) {
-        const response = await fetch("/.netlify/functions/upload", {
-          method: "POST",
-          body: data,
-        });
-
-        if (!response.ok) {
-          await Swal.fire({
-            title: "Server Error",
-            text: "Please try again later",
-            icon: "error",
-          });
+        const uploadedUrl = await uploadGIF();
+        if (!uploadedUrl) {
           return;
         }
-
-        const parsedResponse = (await response.json()) as { url: string };
-
-        processStatus.link = parsedResponse.url;
+        processStatus.link = uploadedUrl;
       }
 
-      const tweetLink = buildTweetLink(
-        processStatus.link,
-        "Check out this GIF I made with Sergif! 🎥✨"
-      );
+      const tweetLink = buildTweetLink(processStatus.link, TWITTER_SHARE_TEXT);
 
       open(tweetLink, "_blank")?.focus();
 
