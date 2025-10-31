@@ -45,3 +45,5 @@ https://sergif.netlify.app
 ## Licence
 
 Licensed under the MIT Licence.
+
+Note for myself: Never stop building you motherfucker, Eliaz 2022 was peak
