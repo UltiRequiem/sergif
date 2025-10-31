@@ -35,6 +35,7 @@ const uploadGIF = async (): Promise<string | null> => {
       text: "Please try again later",
       icon: "error",
     });
+
     return null;
   }
 
@@ -228,9 +229,11 @@ const twitterShareButton = ActionButton("Share on Twitter", false, {
 
       if (!processStatus.link) {
         const uploadedUrl = await uploadGIF();
+
         if (!uploadedUrl) {
           return;
         }
+
         processStatus.link = uploadedUrl;
       }
 

@@ -6,7 +6,6 @@ export interface Recorder {
   startRecording: () => void;
   camera: CustomCamera;
   destroy: () => void;
-  // eslint-disable-next-line no-unused-vars
   stopRecording: (_: () => void) => void;
   getBlob: () => Blob;
 }
