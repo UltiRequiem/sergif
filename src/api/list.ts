@@ -13,11 +13,11 @@ interface UploadResponse {
   uploads: Upload[];
 }
 
-if (!process.env.TIXTE_API_KEY) {
+if (!process.env.TIXTE_API_KEY2) {
   throw new Error("Missing TIXTE_API_KEY2 environment variable");
 }
 
-export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY, {
+export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY2, {
   defaultURL: "ultirequiem.is-from.space",
 });
 

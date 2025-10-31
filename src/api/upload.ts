@@ -2,11 +2,11 @@ import { Buffer } from "node:buffer";
 import { TixteClient } from "@ultirequiem/tixte";
 import { createHandler } from "netfun";
 
-if (!process.env.TIXTE_API_KEY) {
-  throw new Error("Missing TIXTE_API_KEY environment variable");
+if (!process.env.TIXTE_API_KEY2) {
+  throw new Error("Missing TIXTE_API_KEY2 environment variable");
 }
 
-export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY, {
+export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY2, {
   defaultURL: "ultirequiem.is-from.space",
 });
 
