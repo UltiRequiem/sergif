@@ -5,6 +5,10 @@ if (!Element.prototype.append) {
   Element.prototype.append = function (...nodes: (Node | string)[]) {
     const fragment = document.createDocumentFragment();
     nodes.forEach((node) => {
+      // Skip null and undefined values to match native behavior
+      if (node == null) {
+        return;
+      }
       const nodeToAppend =
         typeof node === "string" ? document.createTextNode(node) : node;
       fragment.appendChild(nodeToAppend);
