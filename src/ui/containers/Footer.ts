@@ -5,14 +5,14 @@ export const Footer = addToElement(
     classes: ["text-center", "text-yellow-500"],
   }),
   [
-    createElement("a", "UltiRequiem", {
+    createElement("a", "UltiRequiem (Eliaz Bobadilla)", {
       classes: [
         "text-pink-500",
         "text-xl",
         "hover:underline",
         "hover:text-pink-700",
       ],
-      attributes: { href: "https://ultirequiem.com", target: "_blank" },
+      attributes: { href: "https://ultirequiem.xyz", target: "_blank" },
     }),
     addToElement(
       createElement("p", "Powered by ", { classes: "text-blue-500 text-sm" }),
