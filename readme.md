@@ -11,7 +11,7 @@
 
 You can visit the site on 👇
 
-https://sergif.ultirequiem.com
+https://sergif.ultirequiem.xyz
 
 Or if you like the Netlify Domain...
 
