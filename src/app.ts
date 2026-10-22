@@ -277,7 +277,7 @@ const App = wrapElements(
   wrapElements(downloadButton, shareButton, twitterShareButton),
   recordOtherGIF,
   seeOtherUsersGIFsButton,
-  Footer
+  Footer,
 );
 
 export default App;

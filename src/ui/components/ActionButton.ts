@@ -3,7 +3,7 @@ import { createElement, type EleOptions } from "kumeru";
 export const ActionButton = (
   text = "Download",
   download = true,
-  others: EleOptions<HTMLButtonElement> = {}
+  others: EleOptions<HTMLButtonElement> = {},
 ) =>
   createElement("button", text, {
     classes: `transition mx-3 duration-500 border-0 text-lg h-14 w-36 ${

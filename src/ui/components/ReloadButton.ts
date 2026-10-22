@@ -14,7 +14,7 @@ const reloadButtonClasses = [
 
 export const ReloadButton = (
   text: string,
-  optionals: EleOptions<HTMLButtonElement> = {}
+  optionals: EleOptions<HTMLButtonElement> = {},
 ) =>
   createElement("button", text, {
     classes: reloadButtonClasses,
