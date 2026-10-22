@@ -15,7 +15,7 @@ export const PreviousGIFS = async (page = 1) => {
           },
         },
         classes: "w-[90%] h-[90%]",
-      })
-    )
+      }),
+    ),
   );
 };

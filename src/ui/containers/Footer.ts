@@ -42,7 +42,7 @@ export const Footer = addToElement(
             target: "_blank",
           },
         }),
-      ]
+      ],
     ),
     addToElement(createElement("p"), [
       createElement("a", "Visit the source code", {
@@ -58,5 +58,5 @@ export const Footer = addToElement(
         },
       }),
     ]),
-  ]
+  ],
 );

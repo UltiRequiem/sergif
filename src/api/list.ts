@@ -43,7 +43,7 @@ const list: Handler = async (event) => {
   }
 
   const urls = data.uploads.map(
-    ({ domain, name, extension }) => `https://${domain}/r/${name}.${extension}`
+    ({ domain, name, extension }) => `https://${domain}/r/${name}.${extension}`,
   );
 
   return urls;

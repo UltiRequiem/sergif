@@ -14,7 +14,7 @@ const recordButtonClasses = [
 
 export const RecordButtons = (
   text: string,
-  optionals: EleOptions<HTMLButtonElement> = {}
+  optionals: EleOptions<HTMLButtonElement> = {},
 ) =>
   createElement("button", text, {
     classes: recordButtonClasses,

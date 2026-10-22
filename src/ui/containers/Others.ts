@@ -7,7 +7,7 @@ export const AppTitle = createElement("h1", "Sergif", {
 export const Legend = createElement(
   "p",
   "Record GIFs with your camera, and share them with your friends!",
-  { classes: "p-2" }
+  { classes: "p-2" },
 );
 
 export const GIFBox = createElement("img", { classes: ["h-full"] });
