@@ -43,6 +43,80 @@ const uploadGIF = async (): Promise<string | null> => {
   return parsedResponse.url;
 };
 
+/** Shows an alert and returns false unless a GIF has been fully recorded. */
+const ensureFinished = async (): Promise<boolean> => {
+  if (processStatus.start && processStatus.finished) {
+    return true;
+  }
+
+  await Swal.fire({
+    title: `The process ${
+      processStatus.start ? "didn't finish" : "is not started"
+    } yet!`,
+    text: "Please finish the process",
+  });
+
+  return false;
+};
+
+/** Uploads the GIF once and caches its link. Returns false if the upload failed. */
+const ensureLink = async (): Promise<boolean> => {
+  if (!processStatus.link) {
+    const uploadedUrl = await uploadGIF();
+
+    if (!uploadedUrl) {
+      return false;
+    }
+
+    processStatus.link = uploadedUrl;
+  }
+
+  return true;
+};
+
+/** Returns the [title, text] to warn with before restarting, or null if nothing would be lost. */
+const restartWarning = (): [string, string] | null => {
+  if (!processStatus.start) {
+    return [
+      "You didn't start the process yet!",
+      "You still want to restart the process anyways?",
+    ];
+  }
+
+  if (!processStatus.finished) {
+    return [
+      "You didn't finish the process yet!",
+      "You will lose the current GIF!",
+    ];
+  }
+
+  if (!processStatus.saved) {
+    return [
+      "You didn't Download/Share the GIF yet!",
+      "You will lose the current GIF!",
+    ];
+  }
+
+  return null;
+};
+
+const confirmRestart = async (
+  title: string,
+  text: string,
+): Promise<boolean> => {
+  const result = await Swal.fire({
+    title,
+    text,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, restart it!",
+  });
+
+  return result.isConfirmed;
+};
+
 const stopRecordingButton = RecordButtons("Stop", {
   functions: {
     async click() {
@@ -64,9 +138,8 @@ const stopRecordingButton = RecordButtons("Stop", {
         const [blob, url] = stopRecordingCallback(recorder);
         data = blob;
         GIFBox.src = url;
+        processStatus.finished = true;
       });
-
-      processStatus.finished = true;
     },
   },
 });
@@ -110,13 +183,7 @@ const startRecordingButton = RecordButtons("Start", {
 const downloadButton = ActionButton("Download", true, {
   functions: {
     async click() {
-      if (!processStatus.start || !processStatus.finished) {
-        await Swal.fire({
-          title: `The process ${
-            processStatus.start ? "didn't finish" : "is not started"
-          } yet!`,
-          text: "Please finish the process",
-        });
+      if (!(await ensureFinished())) {
         return;
       }
 
@@ -130,48 +197,10 @@ const downloadButton = ActionButton("Download", true, {
 const recordOtherGIF = ReloadButton("Record Again", {
   functions: {
     async click() {
-      if (!processStatus.start) {
-        const result = await Swal.fire({
-          title: "You didn't start the process yet!",
-          text: "You still want to restart the process anyways?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, restart it!",
-        });
+      const warning = restartWarning();
 
-        if (!result.isConfirmed) {
-          return;
-        }
-      } else if (processStatus.start && !processStatus.finished) {
-        const result = await Swal.fire({
-          title: "You didn't finish the process yet!",
-          text: "You will lose the current GIF!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, restart it!",
-        });
-
-        if (!result.isConfirmed) {
-          return;
-        }
-      } else if (processStatus.finished && !processStatus.saved) {
-        const result = await Swal.fire({
-          title: "You didn't Download/Share the GIF yet!",
-          text: "You will lose the current GIF!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, restart it!",
-        });
-
-        if (!result.isConfirmed) {
-          return;
-        }
+      if (warning && !(await confirmRestart(...warning))) {
+        return;
       }
 
       location.reload();
@@ -182,22 +211,12 @@ const recordOtherGIF = ReloadButton("Record Again", {
 const shareButton = ActionButton("Share", false, {
   functions: {
     async click() {
-      if (!processStatus.start || !processStatus.finished) {
-        await Swal.fire({
-          title: `The process ${
-            processStatus.start ? "didn't finish" : "is not started"
-          } yet!`,
-          text: "Please finish the process",
-        });
+      if (!(await ensureFinished())) {
         return;
       }
 
-      if (!processStatus.link) {
-        const uploadedUrl = await uploadGIF();
-        if (!uploadedUrl) {
-          return;
-        }
-        processStatus.link = uploadedUrl;
+      if (!(await ensureLink())) {
+        return;
       }
 
       await navigator.clipboard.writeText(processStatus.link);
@@ -217,24 +236,12 @@ const shareButton = ActionButton("Share", false, {
 const twitterShareButton = ActionButton("Share on Twitter", false, {
   functions: {
     async click() {
-      if (!processStatus.start || !processStatus.finished) {
-        await Swal.fire({
-          title: `The process ${
-            processStatus.start ? "didn't finish" : "is not started"
-          } yet!`,
-          text: "Please finish the process",
-        });
+      if (!(await ensureFinished())) {
         return;
       }
 
-      if (!processStatus.link) {
-        const uploadedUrl = await uploadGIF();
-
-        if (!uploadedUrl) {
-          return;
-        }
-
-        processStatus.link = uploadedUrl;
+      if (!(await ensureLink())) {
+        return;
       }
 
       const tweetLink = buildTweetLink(processStatus.link, TWITTER_SHARE_TEXT);

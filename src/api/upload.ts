@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 import { TixteClient } from "@ultirequiem/tixte";
+import type { Handler } from "netfun";
 import { createHandler } from "netfun";
 
 if (!process.env.TIXTE_API_KEY2) {
@@ -9,8 +10,6 @@ if (!process.env.TIXTE_API_KEY2) {
 export const tixteClient = new TixteClient(process.env.TIXTE_API_KEY2, {
   defaultURL: "ultirequiem.is-from.space",
 });
-
-import type { Handler } from "netfun";
 
 export const upload: Handler = async (event) => {
   if (!event.body) {
