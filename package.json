@@ -23,7 +23,7 @@
     "vite-tsconfig-paths": "^6.1.1"
   },
   "dependencies": {
-    "@ultirequiem/tixte": "^1.0.6",
+    "@ultirequiem/tixte": "^1.0.7",
     "downloadjs": "^1.4.7",
     "kumeru": "^0.1.0",
     "nanoid": "^6.0.2",
