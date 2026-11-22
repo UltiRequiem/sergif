@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@ultirequiem/tixte':
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.9
+        version: 1.0.9
       downloadjs:
         specifier: ^1.4.7
         version: 1.4.7
@@ -538,8 +538,8 @@ packages:
     resolution: {integrity: sha512-NAGrjn0Pitjqzq/GkgMC4kBYm233PQ8GffyQ9+kTA3AlNQYEzOf25EIM02BAHZv5FRJSpHpJk+OGUxVkOB93GQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@ultirequiem/tixte@1.0.8':
-    resolution: {integrity: sha512-TFHCevmpCqq2sbbo/L7w2aqMwRwbijUQyAtxBfiTjoepfODaUw0qXP+f9nAYZ+z30DNz8FeMxjPaE29SGNSmIQ==}
+  '@ultirequiem/tixte@1.0.9':
+    resolution: {integrity: sha512-g5TRngU/EbTO14psktE2u3/XJGz59lf8S9/YHEjF0b6cortQfFuUJ1VYqVKyGgbYdxOLY3A8jsTXlm8B6JvqTQ==}
     engines: {node: '>=20'}
 
   acorn-jsx@5.3.2:
@@ -1678,7 +1678,7 @@ snapshots:
       '@typescript-eslint/types': 8.72.2
       eslint-visitor-keys: 5.0.1
 
-  '@ultirequiem/tixte@1.0.8': {}
+  '@ultirequiem/tixte@1.0.9': {}
 
   acorn-jsx@5.3.2(acorn@8.19.0):
     dependencies:
