@@ -14,7 +14,7 @@
     "@types/node": "^26.6.6",
     "autoprefixer": "^10.6.2",
     "eslint": "^10.14.0",
-    "postcss": "^8.5.32",
+    "postcss": "^8.5.33",
     "prettier": "^3.9.10",
     "tailwindcss": "^3.0.23",
     "typescript": "^5.9.3",
